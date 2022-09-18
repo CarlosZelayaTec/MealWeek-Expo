@@ -21,7 +21,7 @@ function NavigationTabs() {
       screenOptions={{
         headerRight: () => (
           <TouchableOpacity
-            onPress={() => navigation.navigate('Carrito', {})}
+            onPress={() => navigation.navigate('Carrito', { screen: 'Comidas', params: {} })}
             style={{ marginRight: 12 }}
           >
             <Feather name="shopping-cart" size={28} />

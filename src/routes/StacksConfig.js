@@ -14,15 +14,10 @@ const IngredientsStack = createNativeStackNavigator();
 const RecordStack = createNativeStackNavigator();
 const SettingsStack = createNativeStackNavigator();
 
-export const ShoppingStackScreen = () => (
-  <ShoppingStack.Navigator screenOptions={{ headerShown: false }} >
-    <ShoppingStack.Screen name="Carrito" component={ShoppingScreen} />
-  </ShoppingStack.Navigator>
-);
-
 export const MealStackScreen = () => (
   <MealStack.Navigator screenOptions={{ headerShown: false }}>
     <MealStack.Screen name="MealsHome" component={MealScreen} />
+    <MealStack.Screen name="Carrito" component={ShoppingScreen} />
   </MealStack.Navigator>
 );
 
