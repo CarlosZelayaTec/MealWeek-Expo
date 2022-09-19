@@ -4,3 +4,4 @@ export {default as RecordScreen} from './RecordScreen';
 export {default as SettingsScreen} from './SettingsScreen';
 export {default as ShoppingScreen} from './ShoppingScreen';
 export {default as CreateMeal} from './CreateMeal';
+export {default as CreateIngredients} from './CreateIngredients';

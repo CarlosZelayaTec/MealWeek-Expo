@@ -36,3 +36,24 @@ export const getMeals = async (setMeals) => {
     return unsuscribe;
 
 }
+
+export const createIngredient = async (ingredients) => {
+    await addDoc(collection(database, 'Ingredients'), {
+        ...ingredients,
+        createAt: new Date(),
+    })
+}
+
+export const getIngredients = async (setIngredients) => {
+    const ref = collection(database, 'Ingredients');
+    const q = query(ref, orderBy('createAt', 'desc'));
+
+    const unsuscribe = onSnapshot(q, querySnapshot => {
+        setIngredients(
+            querySnapshot.docs.map((x) => ({
+                id: x.id,
+                title: x.data().title,
+            }))
+        )
+    })
+}

@@ -6,7 +6,8 @@ import {
   RecordScreen,
   SettingsScreen,
   ShoppingScreen,
-  CreateMeal
+  CreateMeal,
+  CreateIngredients,
 } from "../screens";
 
 const ShoppingStack = createNativeStackNavigator();
@@ -19,7 +20,11 @@ export const MealStackScreen = () => (
   <MealStack.Navigator screenOptions={{ headerShown: false }}>
     <MealStack.Screen name="MealsHome" component={MealScreen} />
     <MealStack.Screen name="Carrito" component={ShoppingScreen} />
-    <MealStack.Screen name="Create" component={CreateMeal} options={{ presentation: 'modal'}} />
+    <MealStack.Screen
+      name="Create"
+      component={CreateMeal}
+      options={{ presentation: "modal" }}
+    />
   </MealStack.Navigator>
 );
 
@@ -28,6 +33,11 @@ export const IngredientsStackScreen = () => (
     <IngredientsStack.Screen
       name="IngredientesHome"
       component={IngredientsScreen}
+    />
+    <IngredientsStack.Screen
+      name="CreateIngredient"
+      component={CreateIngredients}
+      options={{ presentation: "modal" }}
     />
   </IngredientsStack.Navigator>
 );
