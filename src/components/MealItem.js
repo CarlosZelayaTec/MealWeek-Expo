@@ -2,9 +2,11 @@ import { Text, Section, SectionContent, Avatar } from "react-native-rapi-ui";
 import { View } from "react-native";
 import React from "react";
 
-const MealItem = () => {
+const MealItem = (props) => {
   return (
-    <Section style={{ marginHorizontal: 8, borderWidth: 0.5 }}>
+    <Section
+      style={{ marginHorizontal: 8, borderWidth: 0.5, marginBottom: 10 }}
+    >
       <SectionContent
         style={{
           flexDirection: "row",
@@ -12,19 +14,13 @@ const MealItem = () => {
           alignItems: "center",
         }}
       >
-          <Avatar
-            source={{
-              uri: "https://tacos10.com/wp-content/uploads/2019/01/Carne-molida-de-res.jpg",
-            }}
-            size="lg"
-            shape="round"
-          />
-        <View style={{ maxWidth: '88%' }}>
+        <Text size="h1" style={{marginRight: 10}}>{props.emoji}</Text>
+        <View style={{ minWidth: "78%"}}>
           <Text size="h3" fontWeight="bold">
-            Carne Molida
+            {props.title}
           </Text>
           <Text size="lg" fontWeight="regular">
-            Carne molida con tajadas y ensalada de repollo
+            {props.descripcion}
           </Text>
         </View>
       </SectionContent>
