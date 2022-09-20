@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Text, Section, SectionContent } from "react-native-rapi-ui";
 import { TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";{ }
 
 const IngredientsItem = (props) => {
+  const navigation = useNavigation();
+  
   return (
-    <TouchableOpacity>
-      <Section style={{marginVertical: 10, minWidth: '30%', maxWidth: '100%'}}>
-        <SectionContent style={{alignItems: 'center'}}>
-          <Text>{props.title}</Text>
+    <Section style={{ marginVertical: 10, minWidth: '45%', maxWidth: '45%' }}>
+      <TouchableOpacity onPress={() => navigation.push('Add', {idI: props.id, t: props.title, p: props.price})} >
+        <SectionContent >
+          <Text size="h3">{props.title}</Text>
+          <Text size="lg">{`L. ${props.price}.00`}</Text>
         </SectionContent>
-      </Section>
-    </TouchableOpacity>
+      </TouchableOpacity>
+    </Section>
   );
 };
 

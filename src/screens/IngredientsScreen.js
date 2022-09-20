@@ -1,30 +1,36 @@
-import { View, FlatList, StyleSheet, TouchableHighlight } from "react-native";
+import {
+  View,
+  FlatList,
+  StyleSheet,
+  TouchableHighlight,
+} from "react-native";
 import React, { useState, useEffect } from "react";
 import { FontAwesome5 } from "@expo/vector-icons";
 
 import { IngredientsItem } from "../components/index";
 import { getIngredients } from "../api/ApiFirebase";
 
-const IngredientsScreen = ({navigation}) => {
+const IngredientsScreen = ({ navigation }) => {
   const [ingredients, setIngredients] = useState([]);
 
   useEffect(() => {
     getIngredients(setIngredients);
-  }, [])
+  }, []);
 
   const IngredientsList = ({ item }) => (
     <IngredientsItem id={item.id} {...item} />
   );
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       <FlatList
         data={ingredients}
         keyExtractor={(x) => x.id}
         renderItem={IngredientsList}
-        numColumns={3}
-        columnWrapperStyle={{justifyContent: 'space-around'}}
+        numColumns={2}
+        columnWrapperStyle={{ justifyContent: "space-around" }}
       />
+
       <TouchableHighlight
         onPress={() => navigation.push("CreateIngredient", {})}
         style={styles.button}
@@ -47,7 +53,7 @@ const styles = StyleSheet.create({
     // backgroundColor: '#fff',
     borderRadius: 30,
     elevation: 8,
-  }
-})
+  },
+});
 
 export default IngredientsScreen;

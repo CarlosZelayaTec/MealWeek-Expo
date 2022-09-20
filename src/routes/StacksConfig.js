@@ -8,6 +8,7 @@ import {
   ShoppingScreen,
   CreateMeal,
   CreateIngredients,
+  AddCart,
 } from "../screens";
 
 const ShoppingStack = createNativeStackNavigator();
@@ -34,11 +35,16 @@ export const IngredientsStackScreen = () => (
       name="IngredientesHome"
       component={IngredientsScreen}
     />
-    <IngredientsStack.Screen
-      name="CreateIngredient"
-      component={CreateIngredients}
-      options={{ presentation: "modal" }}
-    />
+    <IngredientsStack.Group screenOptions={{presentation: 'modal'}} >
+      <IngredientsStack.Screen
+        name="CreateIngredient"
+        component={CreateIngredients}
+      />
+      <IngredientsStack.Screen
+        name="Add"
+        component={AddCart}
+      />
+    </IngredientsStack.Group>
   </IngredientsStack.Navigator>
 );
 

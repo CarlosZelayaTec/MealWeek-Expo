@@ -5,7 +5,8 @@ import { createIngredient } from "../api/ApiFirebase";
 
 const CreateIngredients = ({ navigation }) => {
   const [ingredient, setIngredient] = useState({
-    title: ""
+    title: "",
+    price: 0,
   });
 
   const createOneIngredient = async () => {
@@ -23,6 +24,11 @@ const CreateIngredients = ({ navigation }) => {
           placeholder="Ingrediente u otro"
           value={ingredient.title}
           onChangeText={(e) => setIngredient({ ...ingredient, title: e })}
+        />
+        <TextInput
+          placeholder="precio"
+          value={ingredient.price}
+          onChangeText={(e) => setIngredient({ ...ingredient, price: e })}
         />
       </View>
       <Button text="Agregar" onPress={createOneIngredient} />
