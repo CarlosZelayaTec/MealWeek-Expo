@@ -18,13 +18,13 @@ const RecordStack = createNativeStackNavigator();
 const SettingsStack = createNativeStackNavigator();
 
 export const MealStackScreen = () => (
-  <MealStack.Navigator screenOptions={{ headerShown: false }}>
+  <MealStack.Navigator screenOptions={{ headerShown: false,  }}>
     <MealStack.Screen name="MealsHome" component={MealScreen} />
     <MealStack.Screen name="Carrito" component={ShoppingScreen} />
     <MealStack.Screen
       name="Create"
       component={CreateMeal}
-      options={{ presentation: "modal" }}
+      options={{ presentation: "transparentModal", }}
     />
   </MealStack.Navigator>
 );
@@ -35,7 +35,7 @@ export const IngredientsStackScreen = () => (
       name="IngredientesHome"
       component={IngredientsScreen}
     />
-    <IngredientsStack.Group screenOptions={{presentation: 'modal'}} >
+    <IngredientsStack.Group screenOptions={{presentation: 'transparentModal'}} >
       <IngredientsStack.Screen
         name="CreateIngredient"
         component={CreateIngredients}

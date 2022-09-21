@@ -10,6 +10,7 @@ import { MealItem } from "../components";
 
 import { getMeals } from "../api/ApiFirebase";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { themeColor } from "react-native-rapi-ui";
 
 const MealScreen = ({ navigation }) => {
   const [Meals, setMeals] = useState([]);
@@ -25,7 +26,7 @@ const MealScreen = ({ navigation }) => {
   }, []);
 
   return (
-    <View style={{ flex: 1, marginTop: 10 }}>
+    <View style={{ flex: 1, paddingTop: 10, backgroundColor: `${themeColor.warning700}` }}>
       <FlatList
         style={{ flex: 1 }}
         data={Meals}
