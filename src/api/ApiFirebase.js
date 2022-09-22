@@ -81,7 +81,7 @@ export const getShoppingCart = async (setCart) => {
             querySnapshot.docs.map((x) => ({
                 id: x.id,
                 title: x.data().title,
-                price: x.data().price,
+                price: x.data().price * x.data().amount,
                 amount: x.data().amount,
                 isAlready: x.data().isAlready
             }))

@@ -9,6 +9,8 @@ import { FontAwesome5 } from "@expo/vector-icons";
 
 import { IngredientsItem } from "../components/index";
 import { getIngredients } from "../api/ApiFirebase";
+import { themeColor } from "react-native-rapi-ui";
+import { colors } from "../styles/styles";
 
 const IngredientsScreen = ({ navigation }) => {
   const [ingredients, setIngredients] = useState([]);
@@ -22,7 +24,7 @@ const IngredientsScreen = ({ navigation }) => {
   );
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, backgroundColor: colors.primary }}>
       <FlatList
         data={ingredients}
         keyExtractor={(x) => x.id}
@@ -50,7 +52,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     right: 20,
     bottom: 20,
-    // backgroundColor: '#fff',
     borderRadius: 30,
     elevation: 8,
   },

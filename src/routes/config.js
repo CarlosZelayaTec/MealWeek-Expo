@@ -10,7 +10,7 @@ import {
   RecordStackScreen,
   SettingsStackScreen,
 } from "./StacksConfig";
-import { themeColor } from "react-native-rapi-ui";
+import { colors } from "../styles/styles";
 
 const tabs = createBottomTabNavigator();
 
@@ -32,6 +32,8 @@ function NavigationTabs() {
         ),
         headerStyle: {
           height: 100,
+          backgroundColor: colors.barT,
+          borderBottomLeftRadius: 30
         },
         headerTitleAlign: "left",
         headerTitleStyle: {
@@ -39,9 +41,9 @@ function NavigationTabs() {
         },
         tabBarStyle: {
           height: 88,
-          backgroundColor: `${themeColor.primary500}`,
+          backgroundColor: colors.barT,
           borderTopRightRadius: 40,
-          // borderTopLeftRadius: 35,
+          overflow: 'hidden',
         },
         tabBarShowLabel: false,
       }}

@@ -3,14 +3,14 @@ import {
   View,
   FlatList,
   Button,
-  TouchableHighlight,
+  TouchableOpacity,
   StyleSheet,
 } from "react-native";
 import { MealItem } from "../components";
 
 import { getMeals } from "../api/ApiFirebase";
 import { FontAwesome5 } from "@expo/vector-icons";
-import { themeColor } from "react-native-rapi-ui";
+import { colors } from "../styles/styles";
 
 const MealScreen = ({ navigation }) => {
   const [Meals, setMeals] = useState([]);
@@ -26,19 +26,19 @@ const MealScreen = ({ navigation }) => {
   }, []);
 
   return (
-    <View style={{ flex: 1, paddingTop: 10, backgroundColor: `${themeColor.warning700}` }}>
+    <View style={{ flex: 1, paddingTop: 10, backgroundColor: colors.primary }}>
       <FlatList
         style={{ flex: 1 }}
         data={Meals}
         keyExtractor={(x) => x.id}
         renderItem={MealsList}
       />
-      <TouchableHighlight
+      <TouchableOpacity
         onPress={() => navigation.push("Create", {})}
         style={styles.button}
       >
-        <FontAwesome5 name="plus-circle" size={40} />
-      </TouchableHighlight>
+        <FontAwesome5 name="plus-circle" size={50} color={colors.header}  />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     right: 20,
     bottom: 20,
-    // backgroundColor: '#fff',
+    // backgroundColor: colors.items,
     borderRadius: 30,
     elevation: 8,
   },

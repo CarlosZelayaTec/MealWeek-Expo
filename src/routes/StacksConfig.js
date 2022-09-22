@@ -11,7 +11,6 @@ import {
   AddCart,
 } from "../screens";
 
-const ShoppingStack = createNativeStackNavigator();
 const MealStack = createNativeStackNavigator();
 const IngredientsStack = createNativeStackNavigator();
 const RecordStack = createNativeStackNavigator();
