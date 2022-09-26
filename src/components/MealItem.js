@@ -7,12 +7,20 @@ import { deleteItem } from "../api/ApiFirebase";
 import { useNavigation } from "@react-navigation/native";
 
 const MealItem = (props) => {
-
   const navigation = useNavigation();
 
   const ButtonAlert = () =>
     Alert.alert("Opciones", "¿Qué acción desea realizar?", [
-      { text: "Editar", onPress: () => navigation.navigate('Create', {id: props.id, emo: props.emoji, ti: props.title, des: props.descripcion}) },
+      {
+        text: "Editar",
+        onPress: () =>
+          navigation.navigate("Create", {
+            id: props.id,
+            emo: props.emoji,
+            ti: props.title,
+            des: props.descripcion,
+          }),
+      },
       {
         text: "Eliminar",
         onPress: () => deleteItem("Meals", props.id),
@@ -30,7 +38,7 @@ const MealItem = (props) => {
       <TouchableOpacity
         onPress={() => null}
         onLongPress={ButtonAlert}
-        style={{ backgroundColor: colors.primary }}
+        // style={{ backgroundColor: colors.primary }}
       >
         <SectionContent
           style={{

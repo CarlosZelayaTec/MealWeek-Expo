@@ -103,3 +103,16 @@ export const getShoppingCart = async (setCart, setPrice) => {
 
   return unsuscribe;
 };
+
+export const isShoppingIngredient = async (setIsShopping) => {
+  const ref = collection(database, 'Cart');
+  const q = query(ref);
+
+  const unsuscribe = onSnapshot(q, querySnapshot => {
+    setIsShopping(
+      querySnapshot.docs.map(x => x.data().title)
+    )
+  })
+
+  return unsuscribe;
+}

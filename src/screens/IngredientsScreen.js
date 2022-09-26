@@ -1,26 +1,22 @@
-import {
-  View,
-  FlatList,
-  StyleSheet,
-  TouchableHighlight,
-} from "react-native";
+import { View, FlatList, StyleSheet, TouchableHighlight } from "react-native";
 import React, { useState, useEffect } from "react";
 import { FontAwesome5 } from "@expo/vector-icons";
 
 import { IngredientsItem } from "../components/index";
-import { getIngredients } from "../api/ApiFirebase";
-import { themeColor } from "react-native-rapi-ui";
+import { getIngredients, isShoppingIngredient } from "../api/ApiFirebase";
 import { colors } from "../styles/styles";
 
 const IngredientsScreen = ({ navigation }) => {
   const [ingredients, setIngredients] = useState([]);
+  const [isShpping, setIsShopping] = useState([]);
 
   useEffect(() => {
     getIngredients(setIngredients);
+    isShoppingIngredient(setIsShopping);
   }, []);
 
   const IngredientsList = ({ item }) => (
-    <IngredientsItem id={item.id} {...item} />
+    <IngredientsItem id={item.id} {...item} includeCart={isShpping} />
   );
 
   return (
@@ -37,7 +33,7 @@ const IngredientsScreen = ({ navigation }) => {
         onPress={() => navigation.push("CreateIngredient", {})}
         style={styles.button}
       >
-        <FontAwesome5 name="plus-circle" size={40} />
+        <FontAwesome5 name="plus-circle" size={50} color={colors.header} />
       </TouchableHighlight>
     </View>
   );

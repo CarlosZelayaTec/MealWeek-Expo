@@ -20,8 +20,10 @@ const AddCart = ({ navigation, route }) => {
   });
 
   let status = sendCart.amount === 0 ? "danger" : "primary";
+  let statusTwo = sendCart.amount === 0 ? "danger" : "warning";
 
   async function addCart() {
+    if (sendCart.amount === 0) return null;
     await addShoppingCart(sendCart);
     navigation.goBack();
     alert("Agregado al carrito");
@@ -64,12 +66,6 @@ const AddCart = ({ navigation, route }) => {
       </View>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         <Text size="h1">Cantidad</Text>
-        <MaterialCommunityIcons
-          name="delete"
-          onPress={deleteI}
-          size={40}
-          color="red"
-        />
       </View>
       <View
         style={{
@@ -94,7 +90,7 @@ const AddCart = ({ navigation, route }) => {
           }
         />
       </View>
-      <Button text="Agregar al carrito" status="warning" onPress={addCart} />
+      <Button text="Agregar al carrito" status={statusTwo} onPress={addCart} />
     </Layout>
   );
 };

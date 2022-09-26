@@ -1,22 +1,43 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Text, Section, SectionContent } from "react-native-rapi-ui";
-import { TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";import { colors } from "../styles/styles";
-{ }
+import { TouchableOpacity, StyleSheet } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const IngredientsItem = (props) => {
   const navigation = useNavigation();
-  
+  const { title, includeCart } = props;
+
+  function handleItem() {
+    navigation.push("Add", {
+      idI: props.id,
+      t: props.title,
+      p: props.price,
+    });
+  }
+
   return (
-    <Section style={{ marginVertical: 10, minWidth: '45%', maxWidth: '45%' }}>
-      <TouchableOpacity style={{flex: 1 ,backgroundColor: colors.primary}} onPress={() => navigation.push('Add', {idI: props.id, t: props.title, p: props.price})} >
-        <SectionContent style={{ borderBottomWidth: 1, borderLeftWidth: 1 }} >
-          <Text size="h3">{props.title}</Text>
+    <Section
+      style={styles.container}
+      backgroundColor={includeCart.includes(title) && "red"}
+    >
+      <TouchableOpacity style={{ flex: 1 }} onPress={handleItem}>
+        <SectionContent>
+          <Text size="h3">{title}</Text>
           <Text size="lg">{`L. ${props.price}.00`}</Text>
         </SectionContent>
       </TouchableOpacity>
     </Section>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    marginVertical: 10,
+    minWidth: "45%",
+    maxWidth: "45%",
+    borderBottomWidth: 1,
+    borderLeftWidth: 1,
+  },
+});
 
 export default IngredientsItem;
