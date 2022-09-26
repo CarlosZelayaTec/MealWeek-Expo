@@ -1,42 +1,16 @@
 import { Text, Section, SectionContent } from "react-native-rapi-ui";
 import { View, TouchableOpacity, StyleSheet, Alert } from "react-native";
 import React from "react";
-import { colors } from "../styles/styles";
 
-import { deleteItem, addMealWeek } from "../api/ApiFirebase";
-import { useNavigation } from "@react-navigation/native";
+import { deleteItem } from "../api/ApiFirebase";
 
-const MealItem = (props) => {
-  const navigation = useNavigation();
-
-  async function addWeek(){
-    try {
-      await addMealWeek({
-        title: props.title,
-        descripcion: props.descripcion,
-        emoji: props.emoji
-      })
-      alert('Añadido con éxito');
-    } catch (e) {
-      alert(e)
-    }
-  }
+const WeekItem = (props) => {
 
   const ButtonAlert = () =>
     Alert.alert("Opciones", "¿Qué acción desea realizar?", [
       {
-        text: "Editar",
-        onPress: () =>
-          navigation.navigate("Create", {
-            id: props.id,
-            emo: props.emoji,
-            ti: props.title,
-            des: props.descripcion,
-          }),
-      },
-      {
         text: "Eliminar",
-        onPress: () => deleteItem("Meals", props.id),
+        onPress: () => deleteItem("MealWeeek", props.id),
         style: "destructive",
       },
       {
@@ -49,9 +23,7 @@ const MealItem = (props) => {
   return (
     <Section style={styles.container}>
       <TouchableOpacity
-        onPress={addWeek}
         onLongPress={ButtonAlert}
-        // style={{ backgroundColor: colors.primary }}
       >
         <SectionContent
           style={{
@@ -86,4 +58,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MealItem;
+export default WeekItem;

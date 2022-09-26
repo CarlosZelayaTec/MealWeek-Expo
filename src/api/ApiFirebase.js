@@ -116,3 +116,28 @@ export const isShoppingIngredient = async (setIsShopping) => {
 
   return unsuscribe;
 }
+
+export const addMealWeek = async (mealWeek) => {
+  await addDoc(collection(database, 'MealWeeek'), {
+    ...mealWeek,
+    createAt: new Date(),
+  })
+}
+
+export const getMealWeek = async (setMealWeekData) => {
+  const ref = collection(database, 'MealWeeek');
+  const q = query(ref, orderBy('createAt', 'desc'));
+
+  const unsuscribe = onSnapshot(q, querySnapshot => {
+    setMealWeekData(
+      querySnapshot.docs.map(x => ({
+        id: x.id,
+        title: x.data().title,
+        descripcion: x.data().descripcion,
+        emoji: x.data().emoji,
+      }))
+    )
+  })
+
+  return unsuscribe;
+}

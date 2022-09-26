@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Feather, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { Feather, Ionicons, MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
@@ -8,7 +8,6 @@ import {
   MealStackScreen,
   IngredientsStackScreen,
   RecordStackScreen,
-  SettingsStackScreen,
 } from "./StacksConfig";
 import { colors } from "../styles/styles";
 
@@ -32,7 +31,7 @@ function NavigationTabs() {
         ),
         headerStyle: {
           height: 100,
-          backgroundColor: colors.barT,
+          backgroundColor: colors.items,
           borderBottomLeftRadius: 30
         },
         headerTitleAlign: "left",
@@ -41,7 +40,7 @@ function NavigationTabs() {
         },
         tabBarStyle: {
           height: 88,
-          backgroundColor: colors.barT,
+          backgroundColor: colors.items,
           borderTopRightRadius: 40,
           overflow: 'hidden',
         },
@@ -53,9 +52,9 @@ function NavigationTabs() {
         component={MealStackScreen}
         options={{
           tabBarIcon: ({ focused }) => {
-            let n = focused ? "food-drumstick" : "food-drumstick-outline";
+            let n = focused ? "restaurant" : "restaurant-outline";
 
-            return <MaterialCommunityIcons name={n} size={33} />;
+            return <Ionicons name={n} size={33} />;
           },
           tabBarLabelStyle: {
             fontSize: 12,
@@ -72,20 +71,10 @@ function NavigationTabs() {
         }}
       />
       <tabs.Screen
-        name="Historial"
+        name="Semana"
         component={RecordStackScreen}
         options={{
           tabBarIcon: () => <MaterialCommunityIcons name="history" size={33} />,
-        }}
-      />
-      <tabs.Screen
-        name="Ajustes"
-        component={SettingsStackScreen}
-        options={{
-          tabBarIcon: ({ focused }) => {
-            let n = focused ? "ios-settings" : "ios-settings-outline";
-            return <Ionicons name={n} size={33} />;
-          },
         }}
       />
     </tabs.Navigator>

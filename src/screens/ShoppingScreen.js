@@ -1,4 +1,4 @@
-import { View, FlatList } from "react-native";
+import { View, FlatList, Image } from "react-native";
 import { Text } from "react-native-rapi-ui";
 import React, { useState, useEffect } from "react";
 import { CartItem } from "../components/index";
@@ -17,11 +17,21 @@ const ShoppingScreen = () => {
 
   return (
     <View style={{ flex: 1 }}>
-      <FlatList
-        data={cart}
-        keyExtractor={(x) => x.id}
-        renderItem={renderCart}
-      />
+      {cart.length ? (
+        <FlatList
+          data={cart}
+          keyExtractor={(x) => x.id}
+          renderItem={renderCart}
+        />
+      ) : (
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}} >
+          <Image
+            source={require("../../assets/pay.png")}
+            resizeMode="contain"
+            style={{ maxWidth: "85%" }}
+          />
+        </View>
+      )}
       <Text
         size="h3"
         style={{ textAlign: "right", paddingRight: 20, paddingVertical: 10 }}
