@@ -1,13 +1,35 @@
 import { Text, Section, SectionContent } from "react-native-rapi-ui";
-import { View, TouchableOpacity, StyleSheet } from "react-native";
+import { View, TouchableOpacity, StyleSheet, Alert } from "react-native";
 import React from "react";
 import { colors } from "../styles/styles";
 
+import { deleteItem } from "../api/ApiFirebase";
+import { useNavigation } from "@react-navigation/native";
+
 const MealItem = (props) => {
+
+  const navigation = useNavigation();
+
+  const ButtonAlert = () =>
+    Alert.alert("Opciones", "¿Qué acción desea realizar?", [
+      { text: "Editar", onPress: () => navigation.navigate('Create', {id: props.id, emo: props.emoji, ti: props.title, des: props.descripcion}) },
+      {
+        text: "Eliminar",
+        onPress: () => deleteItem("Meals", props.id),
+        style: "destructive",
+      },
+      {
+        text: "Cancelar",
+        onPress: () => null,
+        style: "cancel",
+      },
+    ]);
+
   return (
     <Section style={styles.container}>
       <TouchableOpacity
         onPress={() => null}
+        onLongPress={ButtonAlert}
         style={{ backgroundColor: colors.primary }}
       >
         <SectionContent

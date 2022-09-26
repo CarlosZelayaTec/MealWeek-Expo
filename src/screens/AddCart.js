@@ -8,7 +8,7 @@ import {
 } from "react-native-rapi-ui";
 import { View } from "react-native";
 
-import { deleteIngredient, addShoppingCart } from "../api/ApiFirebase";
+import { deleteItem, addShoppingCart } from "../api/ApiFirebase";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
@@ -33,7 +33,7 @@ const AddCart = ({ navigation, route }) => {
   }
 
   const deleteI = async () => {
-    await deleteIngredient(route.params.idI);
+    await deleteItem('Ingredients', route.params.idI);
     navigation.goBack();
   };
 

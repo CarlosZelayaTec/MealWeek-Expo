@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   TextInput,
   Text,
@@ -7,11 +7,11 @@ import {
   themeColor,
 } from "react-native-rapi-ui";
 import { StyleSheet, View, Image } from "react-native";
-import { createMeal } from "../api/ApiFirebase";
+import { createMeal, updateItem } from "../api/ApiFirebase";
 
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 
-const CreateMeal = ({ navigation }) => {
+const CreateMeal = ({ navigation, route }) => {
   const [Meal, setMeal] = useState({
     title: "",
     descripcion: "",
@@ -22,6 +22,26 @@ const CreateMeal = ({ navigation }) => {
     await createMeal(Meal);
     navigation.goBack();
   };
+
+  const updateOneMeal = async () => {
+    await updateItem(route.params.id, Meal);
+    navigation.goBack();
+  };
+
+  /**
+   * ! Factorizar este código
+   */
+
+  const text = route.params?.ti ? "Actualiza el platillo" : "Nuevo platillo";
+  const boton = route.params?.ti ? "Actualizar platillo" : "Agregar platillo";
+  useEffect(() => {
+    route.params?.ti &&
+      setMeal({
+        title: route.params.ti,
+        descripcion: route.params.des,
+        emoji: route.params.emo,
+      });
+  }, []);
 
   return (
     <Layout
@@ -50,7 +70,7 @@ const CreateMeal = ({ navigation }) => {
         />
       </View>
       <Text size="h3" fontWeight="medium" style={{ textAlign: "center" }}>
-        Nuevo platillo...
+        {text}
       </Text>
       <View
         style={{
@@ -61,7 +81,9 @@ const CreateMeal = ({ navigation }) => {
           marginTop: 10,
         }}
       >
-        <Text size="h1" style={{marginRight: 10}} >{Meal.emoji}</Text>
+        <Text size="h1" style={{ marginRight: 10 }}>
+          {Meal.emoji}
+        </Text>
         <TextInput
           placeholder="emoji"
           value={Meal.emoji}
@@ -97,10 +119,10 @@ const CreateMeal = ({ navigation }) => {
       <Button
         style={{ marginTop: 10 }}
         status="danger"
-        text="Agregar Platillo"
-        onPress={createOneMeal}
+        text={boton}
+        onPress={route.params?.ti ? updateOneMeal : createOneMeal}
         rightContent={<Text size="h2">🌮</Text>}
-        textStyle={{fontSize: 17}}
+        textStyle={{ fontSize: 17 }}
       />
 
       <Image source={require("../../assets/cafe.png")} resizeMode="cover" />

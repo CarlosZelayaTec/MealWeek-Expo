@@ -6,18 +6,13 @@ import { CartItem } from "../components/index";
 import { getShoppingCart } from "../api/ApiFirebase";
 
 const ShoppingScreen = () => {
-  const [cart, setCart] = useState({
-    id: "",
-    title: "",
-    price: 0,
-    amount: 0,
-    isAlready: false,
-  });
+  const [cart, setCart] = useState([]);
+  const [price, setPrice] = useState(0);
 
   const renderCart = ({ item }) => <CartItem id={item.id} {...item} />;
 
   useEffect(() => {
-    getShoppingCart(setCart);
+    getShoppingCart(setCart, setPrice);
   }, []);
 
   return (
@@ -26,13 +21,11 @@ const ShoppingScreen = () => {
         data={cart}
         keyExtractor={(x) => x.id}
         renderItem={renderCart}
-        ListFooterComponent={
-          <Text
-            size="h2"
-            style={{ textAlign: "right", marginRight: 15, marginTop: 20 }}
-          >{`Total a pagar: L. 0.00`}</Text>
-        }
       />
+      <Text
+        size="h3"
+        style={{ textAlign: "right", paddingRight: 20, paddingVertical: 10 }}
+      >{`L. ${price}.00`}</Text>
     </View>
   );
 };
