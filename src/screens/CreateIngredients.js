@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { TextInput, Text, Button, Layout } from "react-native-rapi-ui";
 import { StyleSheet, View } from "react-native";
-import { createIngredient } from "../api/ApiFirebase";
+import { createIngredient, updateIngredient } from "../api/ApiFirebase";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-const CreateIngredients = ({ navigation }) => {
+const CreateIngredients = ({ navigation, route }) => {
   const [ingredient, setIngredient] = useState({
     title: "",
     price: 0,
@@ -15,6 +15,22 @@ const CreateIngredients = ({ navigation }) => {
     await createIngredient(ingredient);
     navigation.goBack();
   };
+  
+  const updateOneIngredient = async () => {
+    await updateIngredient(route.params.id, ingredient);
+    navigation.goBack();
+  }
+
+  const text = route.params?.title ? "Actualiza el ingrediente" : "Agrega un nuevo ingrediente";
+  const boton = route.params?.title ? "Actualizar ingrediente" : "Agregar ingrediente";
+
+  useEffect(() => {
+    route.params?.title &&
+      setIngredient({
+        title: route.params.title,
+        price: route.params.price
+      });
+  }, [])
 
   return (
     <Layout
@@ -42,7 +58,7 @@ const CreateIngredients = ({ navigation }) => {
         />
       </View>
       <Text size="h3" style={{ textAlign: "center" }}>
-        Agrega un nuevo ingrediente
+        {text}
       </Text>
       <View style={styles.inputs}>
         <TextInput
@@ -56,7 +72,7 @@ const CreateIngredients = ({ navigation }) => {
           onChangeText={(e) => setIngredient({ ...ingredient, price: e })}
         />
       </View>
-      <Button text="Agregar" onPress={createOneIngredient} />
+      <Button text={boton} onPress={route.params?.title ? updateOneIngredient : createOneIngredient} />
     </Layout>
   );
 };

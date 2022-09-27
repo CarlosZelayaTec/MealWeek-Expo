@@ -28,7 +28,7 @@ const ShoppingScreen = () => {
           <Image
             source={require("../../assets/pay.png")}
             resizeMode="contain"
-            style={{ maxWidth: "85%" }}
+            style={{ maxWidth: "70%" }}
           />
         </View>
       )}

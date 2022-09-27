@@ -41,6 +41,11 @@ export const updateItem = async (id, meals) => {
   await updateDoc(ref, meals);
 };
 
+export const updateIngredient = async (id, ingredient) => {
+  const ref = doc(database, "Ingredients", id);
+  await updateDoc(ref, ingredient);
+};
+
 export const createIngredient = async (ingredients) => {
   await addDoc(collection(database, "Ingredients"), {
     ...ingredients,

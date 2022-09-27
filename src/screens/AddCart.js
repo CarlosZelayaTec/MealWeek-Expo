@@ -34,11 +34,6 @@ const AddCart = ({ navigation, route }) => {
     setSendCart({ ...sendCart, amount: sendCart.amount - 1 });
   }
 
-  const deleteI = async () => {
-    await deleteItem('Ingredients', route.params.idI);
-    navigation.goBack();
-  };
-
   return (
     <Layout
       style={{

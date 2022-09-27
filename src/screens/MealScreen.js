@@ -26,7 +26,7 @@ const MealScreen = ({ navigation }) => {
   }, []);
 
   return (
-    <View style={{ flex: 1, paddingTop: 10, backgroundColor: colors.primary }}>
+    <View style={{ flex: 1, paddingTop: 10, backgroundColor: 'white' }}>
       <FlatList
         style={{ flex: 1 }}
         data={Meals}

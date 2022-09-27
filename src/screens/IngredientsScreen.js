@@ -20,12 +20,13 @@ const IngredientsScreen = ({ navigation }) => {
   );
 
   return (
-    <View style={{ flex: 1, backgroundColor: colors.primary }}>
+    <View style={{ flex: 1, backgroundColor: '#FFF' }}>
       <FlatList
         data={ingredients}
         keyExtractor={(x) => x.id}
         renderItem={IngredientsList}
         numColumns={2}
+        initialNumToRender={12}
         columnWrapperStyle={{ justifyContent: "space-around" }}
       />
 

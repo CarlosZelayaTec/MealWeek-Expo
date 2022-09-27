@@ -1,6 +1,11 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Feather, Ionicons, MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
+import {
+  Feather,
+  Ionicons,
+  MaterialCommunityIcons,
+  MaterialIcons,
+} from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
@@ -32,17 +37,18 @@ function NavigationTabs() {
         headerStyle: {
           height: 100,
           backgroundColor: colors.items,
-          borderBottomLeftRadius: 30
+          borderBottomLeftRadius: 30,
         },
         headerTitleAlign: "left",
         headerTitleStyle: {
           fontSize: 34,
+          marginLeft: 5,
         },
         tabBarStyle: {
           height: 88,
           backgroundColor: colors.items,
           borderTopRightRadius: 40,
-          overflow: 'hidden',
+          overflow: "hidden",
         },
         tabBarShowLabel: false,
       }}
@@ -66,15 +72,25 @@ function NavigationTabs() {
         component={IngredientsStackScreen}
         options={{
           tabBarIcon: ({ focused }) => {
-            return <MaterialCommunityIcons name={focused ? "bowl-mix" : 'bowl-mix-outline'} size={33} />;
+            return (
+              <MaterialCommunityIcons
+                name={focused ? "bowl-mix" : "bowl-mix-outline"}
+                size={33}
+              />
+            );
           },
         }}
       />
       <tabs.Screen
-        name="Semana"
+        name="Menú"
         component={RecordStackScreen}
         options={{
-          tabBarIcon: () => <MaterialCommunityIcons name="history" size={33} />,
+          tabBarIcon: ({ focused }) => (
+            <MaterialCommunityIcons
+              name={focused ? "calendar-weekend" : "calendar-weekend-outline"}
+              size={33}
+            />
+          ),
         }}
       />
     </tabs.Navigator>

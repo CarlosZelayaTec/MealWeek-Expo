@@ -1,7 +1,10 @@
 import React from "react";
 import { Text, Section, SectionContent } from "react-native-rapi-ui";
-import { TouchableOpacity, StyleSheet } from "react-native";
+import { TouchableOpacity, StyleSheet, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+
+import { deleteItem } from "../api/ApiFirebase";
+import { colors } from "../styles/styles";
 
 const IngredientsItem = (props) => {
   const navigation = useNavigation();
@@ -15,15 +18,34 @@ const IngredientsItem = (props) => {
     });
   }
 
+  const ButtonAlert = () =>
+    Alert.alert("Opciones", "¿Qué acción desea realizar?", [
+      {
+        text: 'Editar',
+        onPress: () => navigation.navigate('CreateIngredient', {id: props.id, title: props.title, price: props.price }),
+        style: 'default'
+      },
+      {
+        text: "Eliminar",
+        onPress: () => deleteItem("Ingredients", props.id),
+        style: "destructive",
+      },
+      {
+        text: "Cancelar",
+        onPress: () => null,
+        style: "cancel",
+      },
+    ]);
+
   return (
     <Section
       style={styles.container}
-      backgroundColor={includeCart.includes(title) && "red"}
+      backgroundColor={includeCart.includes(title) ? colors.bar : colors.primary}
     >
-      <TouchableOpacity style={{ flex: 1 }} onPress={handleItem}>
+      <TouchableOpacity style={{ flex: 1 }} onPress={handleItem} onLongPress={ButtonAlert} >
         <SectionContent>
           <Text size="h3">{title}</Text>
-          <Text size="lg">{`L. ${props.price}.00`}</Text>
+          <Text size="lg"  >{`L. ${props.price}.00`}</Text>
         </SectionContent>
       </TouchableOpacity>
     </Section>
