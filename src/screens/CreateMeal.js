@@ -10,6 +10,7 @@ import { StyleSheet, View, Image } from "react-native";
 import { createMeal, updateItem } from "../api/ApiFirebase";
 
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
+import { colors } from "../styles/styles";
 
 const CreateMeal = ({ navigation, route }) => {
   const [Meal, setMeal] = useState({
@@ -45,7 +46,7 @@ const CreateMeal = ({ navigation, route }) => {
 
   return (
     <Layout
-      backgroundColor={themeColor.warning300}
+      backgroundColor={colors.modal}
       style={{
         justifyContent: "flex-start",
         alignItems: "center",

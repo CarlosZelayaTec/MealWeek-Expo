@@ -37,7 +37,7 @@ const MealScreen = ({ navigation }) => {
         onPress={() => navigation.push("Create", {})}
         style={styles.button}
       >
-        <FontAwesome5 name="plus-circle" size={50} color={colors.header}  />
+        <FontAwesome5 name="plus-circle" size={50} color={colors.add}  />
       </TouchableOpacity>
     </View>
   );

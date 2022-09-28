@@ -34,7 +34,7 @@ const IngredientsScreen = ({ navigation }) => {
         onPress={() => navigation.push("CreateIngredient", {})}
         style={styles.button}
       >
-        <FontAwesome5 name="plus-circle" size={50} color={colors.header} />
+        <FontAwesome5 name="plus-circle" size={50} color={colors.add} />
       </TouchableHighlight>
     </View>
   );

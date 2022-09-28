@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   Button,
   Layout,
@@ -7,10 +7,10 @@ import {
   Text,
 } from "react-native-rapi-ui";
 import { View } from "react-native";
-
-import { deleteItem, addShoppingCart } from "../api/ApiFirebase";
-
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+
+import { colors } from "../styles/styles";
+import { addShoppingCart } from "../api/ApiFirebase";
 
 const AddCart = ({ navigation, route }) => {
   const [sendCart, setSendCart] = React.useState({
@@ -37,12 +37,13 @@ const AddCart = ({ navigation, route }) => {
   return (
     <Layout
       style={{
-        justifyContent: "flex-end",
+        justifyContent: "center",
         alignItems: "center",
-        marginTop: "140%",
+        marginTop: "150%",
         borderTopLeftRadius: 25,
         borderTopRightRadius: 25,
       }}
+      backgroundColor={colors.modal}
     >
       <View
         style={{
@@ -60,7 +61,9 @@ const AddCart = ({ navigation, route }) => {
         />
       </View>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
-        <Text size="h1">Cantidad</Text>
+        <Text size="h1" fontWeight="medium">
+          Cantidad
+        </Text>
       </View>
       <View
         style={{
@@ -85,7 +88,13 @@ const AddCart = ({ navigation, route }) => {
           }
         />
       </View>
-      <Button text="Agregar al carrito" status={statusTwo} onPress={addCart} />
+      <Button
+        text="Agregar al carrito"
+        status={statusTwo}
+        onPress={addCart}
+        rightContent={<Text size="h3">🛒</Text>}
+        textStyle={{ fontSize: 17 }}
+      />
     </Layout>
   );
 };

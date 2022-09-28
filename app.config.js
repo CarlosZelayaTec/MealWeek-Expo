@@ -11,7 +11,7 @@ export default {
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#CCD2C6"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -25,10 +25,10 @@ export default {
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "backgroundColor": "#CCD2C6"
       }
     },
-    "web": {
+    "web": { 
       "favicon": "./assets/favicon.png"
     },
     extra: {

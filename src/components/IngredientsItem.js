@@ -40,7 +40,7 @@ const IngredientsItem = (props) => {
   return (
     <Section
       style={styles.container}
-      backgroundColor={includeCart.includes(title) ? colors.bar : colors.primary}
+      backgroundColor={includeCart.includes(title) && colors.l }
     >
       <TouchableOpacity style={{ flex: 1 }} onPress={handleItem} onLongPress={ButtonAlert} >
         <SectionContent>

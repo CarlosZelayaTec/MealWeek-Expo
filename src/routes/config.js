@@ -36,7 +36,7 @@ function NavigationTabs() {
         ),
         headerStyle: {
           height: 100,
-          backgroundColor: colors.items,
+          backgroundColor: colors.header,
           borderBottomLeftRadius: 30,
         },
         headerTitleAlign: "left",
@@ -46,7 +46,7 @@ function NavigationTabs() {
         },
         tabBarStyle: {
           height: 88,
-          backgroundColor: colors.items,
+          backgroundColor: colors.header,
           borderTopRightRadius: 40,
           overflow: "hidden",
         },

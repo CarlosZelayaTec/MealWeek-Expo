@@ -51,7 +51,6 @@ const MealItem = (props) => {
       <TouchableOpacity
         onPress={addWeek}
         onLongPress={ButtonAlert}
-        style={{ backgroundColor: colors.primary }}
       >
         <SectionContent
           style={{
