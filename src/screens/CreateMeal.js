@@ -6,7 +6,7 @@ import {
   Layout,
   themeColor,
 } from "react-native-rapi-ui";
-import { StyleSheet, View, Image } from "react-native";
+import { StyleSheet, View, Image, Platform } from "react-native";
 import { createMeal, updateItem } from "../api/ApiFirebase";
 
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
@@ -45,16 +45,7 @@ const CreateMeal = ({ navigation, route }) => {
   }, []);
 
   return (
-    <Layout
-      backgroundColor={colors.modal}
-      style={{
-        justifyContent: "flex-start",
-        alignItems: "center",
-        marginTop: "60%",
-        borderTopLeftRadius: 25,
-        borderTopRightRadius: 25,
-      }}
-    >
+    <Layout backgroundColor={colors.modal} style={styles.layout}>
       <View
         style={{
           marginTop: -35,
@@ -64,7 +55,14 @@ const CreateMeal = ({ navigation, route }) => {
         }}
       >
         <MaterialCommunityIcons
-          style={{ alignItems: "flex-end" }}
+          style={{
+            alignItems: "flex-end",
+            ...Platform.select({
+              android: {
+                marginTop: 20,
+              },
+            }),
+          }}
           name="close-circle"
           size={35}
           onPress={() => navigation.goBack()}
@@ -137,6 +135,19 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
     minHeight: 110,
     maxWidth: "88%",
+  },
+  layout: {
+    justifyContent: "flex-start",
+    alignItems: "center",
+    marginTop: "60%",
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
+
+    ...Platform.select({
+      android: {
+        marginTop: "20%",
+      },
+    }),
   },
 });
 

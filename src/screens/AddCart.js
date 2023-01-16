@@ -6,7 +6,7 @@ import {
   SectionContent,
   Text,
 } from "react-native-rapi-ui";
-import { View } from "react-native";
+import { View, Platform } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { colors } from "../styles/styles";
@@ -42,6 +42,12 @@ const AddCart = ({ navigation, route }) => {
         marginTop: "150%",
         borderTopLeftRadius: 25,
         borderTopRightRadius: 25,
+        ...Platform.select({
+          android: {
+            marginTop: '99%',
+            justifyContent: 'center'
+          }
+        })
       }}
       backgroundColor={colors.modal}
     >

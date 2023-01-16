@@ -23,7 +23,7 @@ export const MealStackScreen = () => (
     <MealStack.Screen
       name="Create"
       component={CreateMeal}
-      options={{ presentation: "transparentModal", }}
+      options={{ presentation: "transparentModal", animation: 'slide_from_bottom'}}
     />
   </MealStack.Navigator>
 );
