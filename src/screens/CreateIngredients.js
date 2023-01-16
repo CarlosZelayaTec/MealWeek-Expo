@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { TextInput, Text, Button, Layout, themeColor } from "react-native-rapi-ui";
-import { StyleSheet, View, Image } from "react-native";
+import { StyleSheet, View, Image, Platform } from "react-native";
 import { createIngredient, updateIngredient } from "../api/ApiFirebase";
 
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
@@ -45,6 +45,11 @@ const CreateIngredients = ({ navigation, route }) => {
         marginTop: "60%",
         borderTopLeftRadius: 25,
         borderTopRightRadius: 25,
+        ...Platform.select({
+          android: {
+            marginTop: '40%'
+          }
+        })
       }}
       backgroundColor={colors.modal}
     >
@@ -57,7 +62,11 @@ const CreateIngredients = ({ navigation, route }) => {
         }}
       >
         <MaterialCommunityIcons
-          style={{ alignItems: "flex-end" }}
+          style={{ alignItems: "flex-end", ...Platform.select({
+            android: {
+              marginTop: 15
+            }
+          }) }}
           name="close-circle"
           size={35}
           onPress={() => navigation.goBack()}
@@ -106,7 +115,7 @@ const CreateIngredients = ({ navigation, route }) => {
         rightContent={<Text size="h2">🥦</Text>}
         textStyle={{ fontSize: 17 }}
       />
-      <Image source={require("../../assets/cap.png")} resizeMode="contain" style={{maxHeight: '80%', maxWidth: '100%', marginTop: 25}} />
+      <Image source={require("../../assets/cap.png")} resizeMode="contain" style={styles.image} />
     </Layout>
   );
 };
@@ -118,6 +127,16 @@ const styles = StyleSheet.create({
     minHeight: 110,
     maxWidth: "88%",
   },
+  image: {
+    maxHeight: '80%', 
+    maxWidth: '100%', 
+    marginTop: 25,
+    ...Platform.select({
+      android: {
+        maxHeight: '65%'
+      }
+    })
+  }
 });
 
 export default CreateIngredients;

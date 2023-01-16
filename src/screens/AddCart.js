@@ -44,7 +44,7 @@ const AddCart = ({ navigation, route }) => {
         borderTopRightRadius: 25,
         ...Platform.select({
           android: {
-            marginTop: '99%',
+            marginTop: '105%',
             justifyContent: 'center'
           }
         })
@@ -57,10 +57,20 @@ const AddCart = ({ navigation, route }) => {
           alignItems: "flex-end",
           width: "94%",
           height: "24%",
+          ...Platform.select({
+            android: {
+              marginTop: -70,
+              height: '30%'
+            }
+          })
         }}
       >
         <MaterialCommunityIcons
-          style={{ alignItems: "flex-end" }}
+          style={{ alignItems: "flex-end", ...Platform.select({
+            android: {
+              marginTop: 33
+            }
+          }) }}
           name="close-circle"
           size={35}
           onPress={() => navigation.goBack()}
@@ -79,7 +89,7 @@ const AddCart = ({ navigation, route }) => {
         }}
       >
         <Button text="-" status={status} width={50} onPress={changeRest} />
-        <Section style={{ width: "30%", marginHorizontal: 15 }}>
+        <Section style={{ width: "30%", marginHorizontal: 15}}>
           <SectionContent>
             <Text size="h3" style={{ textAlign: "center" }}>
               {sendCart.amount}
