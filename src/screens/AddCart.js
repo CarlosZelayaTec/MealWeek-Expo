@@ -44,7 +44,7 @@ const AddCart = ({ navigation, route }) => {
         borderTopRightRadius: 25,
         ...Platform.select({
           android: {
-            marginTop: '105%',
+            marginTop: '100%',
             justifyContent: 'center'
           }
         })

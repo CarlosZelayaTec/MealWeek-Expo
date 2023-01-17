@@ -34,7 +34,7 @@ export const IngredientsStackScreen = () => (
       name="IngredientesHome"
       component={IngredientsScreen}
     />
-    <IngredientsStack.Group screenOptions={{presentation: 'transparentModal'}} >
+    <IngredientsStack.Group screenOptions={{presentation: 'transparentModal', animation: 'slide_from_bottom'}} >
       <IngredientsStack.Screen
         name="CreateIngredient"
         component={CreateIngredients}

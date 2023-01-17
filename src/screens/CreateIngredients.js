@@ -47,7 +47,7 @@ const CreateIngredients = ({ navigation, route }) => {
         borderTopRightRadius: 25,
         ...Platform.select({
           android: {
-            marginTop: '40%'
+            marginTop: '20%'
           }
         })
       }}
